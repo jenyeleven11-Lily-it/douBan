@@ -4,8 +4,7 @@ import pandas as pd
 origin_folder=r"D:\Studywork\studySpace\douBan\data\raw\douban_top250_raw.csv"
 object_folder=r"D:\Studywork\studySpace\douBan\data\proceed\douban_top250_proceed.csv"
 
-
-df=pd.read_csv(origin_folder);
+df=pd.read_csv(origin_folder)
 df['title']=df['title'].str.strip()
 df['title']=df['title'].str.replace('\u00A0','',regex=False)
 #中英文分开,expand用于多列表
