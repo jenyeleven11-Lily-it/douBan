@@ -73,7 +73,7 @@ def parse_movie_item(item):
     }
 
 
-def fetch_top250(save_csv="data/raw/douban_top250_raw.csv"):
+def fetch_top250(save_csv="data/raw/douban_top250_proceed.csv"):
     """抓取豆瓣 Top250 并保存 CSV"""
     all_movies = []
     for start in range(0, 250, 25):
