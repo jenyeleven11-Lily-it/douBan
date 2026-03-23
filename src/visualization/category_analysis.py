@@ -7,7 +7,7 @@ df = pd.read_csv(r"D:\Studywork\studySpace\douBan\data\proceed\douban_top250_pro
 #各类电影top
 #apply是用于遍历某一列中的所有元素
 df['category']=df['tail'].apply(lambda x:x.split('/')[-1])
-df['category'] = df['category'].apply(lambda x: [i.strip() for i in x.split(' ') if i.split()!=''])
+df['category'] = df['category'].apply(lambda x: [i.strip() for i in x.split(' ') if i.strip()!=''])
 df_explode = df.explode('category')
 category_counts=df_explode['category'].value_counts()
 print(category_counts)
@@ -37,8 +37,15 @@ plt.show()
 #---------------------年份趋势分析------------------
 #--提取年份
 df['year']=df["year"].astype(str).str.extract(r'(\d{4})')
-#--缺失值检查--0
+#--缺失值检查--
 print(df["year"].isna().sum())
 #groupby锁定整个表，不用单独一列
 year_mean=df.groupby("year")["rating"].mean()
-print(year_mean)
+year=year_mean.index
+#--画折线图--
+plt.figure(figsize=(20,6))
+plt.plot(year,year_mean,marker="o",linestyle="-")
+plt.xlabel('Years',fontsize=12)
+plt.ylabel('Mean Rating',fontsize=12)
+plt.tight_layout()
+plt.show()
