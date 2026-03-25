@@ -5,6 +5,7 @@ plt.rcParams['font.sans-serif'] = ['SimHei']  # 显示中文
 plt.rcParams['axes.unicode_minus'] = False   # 正常显示负号
 df = pd.read_csv(r"D:\Studywork\studySpace\douBan\data\proceed\douban_top250_proceed.csv")
 #各类电影top
+mean_rating=df['rating'].mean()
 #apply是用于遍历某一列中的所有元素
 df['category']=df['tail'].apply(lambda x:x.split('/')[-1])
 df['category'] = df['category'].apply(lambda x: [i.strip() for i in x.split(' ') if i.strip()!=''])
@@ -49,3 +50,9 @@ plt.xlabel('Years',fontsize=12)
 plt.ylabel('Mean Rating',fontsize=12)
 plt.tight_layout()
 plt.show()
+#---大于平均分电影
+higher_mean=category_mean[category_mean>mean_rating]
+print("The movies categories higher than mean rating:",higher_mean)
+#--小于平均分电影
+lower_mean=category_mean[category_mean<mean_rating]
+print("The movies categories lower than mean rating:",lower_mean)
